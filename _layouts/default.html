@@ -6,6 +6,22 @@
   <body>
 
     {%- include header.html -%}
+    {%- include nav.html -%}
+	
+	<nav class="main-nav">
+		<ul>
+			{% assign nav_pages = site.html_pages | sort: 'nav_weight' %}
+			{% for p in nav_pages %}
+				{% if p.nav_weight %}
+					<li>
+						<a href="{{ p.url }}" {% if p.url == page.url%}class="active"{% endif %}>
+							{{ p.title }}
+						</a>
+					</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</nav>
 
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
